@@ -1,0 +1,53 @@
+<div class="container-fluid container-xxl">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 d-flex justify-content-center p-2">
+      <div class="content text-center">
+        <div class="heading">Register</div>
+        <form [formGroup]="registerFormGroup" (submit)="register()">
+
+            <mat-form-field class="w-75">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" placeholder="Alice Trent" id="name" formControlName="name"/>
+            </mat-form-field>
+            <div>
+              <mat-error *ngIf="f && f['name'].dirty && f['name'].invalid">3 to 32 letters, alphabets,<br>spaces are allowed.</mat-error>
+            </div>
+
+            <mat-form-field class="w-75">
+              <mat-label>Email Id</mat-label>
+              <input matInput type="email" placeholder="abc@xyz.com" id="email" formControlName="email"/>
+            </mat-form-field>
+            <div>
+              <mat-error *ngIf="f && f['email'].dirty && f['email'].invalid">should be a valid one.</mat-error>
+            </div>
+
+            <mat-form-field class="w-75">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" id="password" formControlName="password"/>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <div>
+              <mat-error *ngIf="f && f['password'].dirty && f['password'].invalid">Should contains min 8 Chars<br>UpperCase, LowerCase,<br>Number/SpecialChar</mat-error>
+            </div>
+
+            <mat-form-field class="w-75">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" id="confirmPassword" formControlName="confirmPassword"/>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <div>
+              <button type="submit" mat-button color="primary" mat-raised-button>Register</button>
+            </div>
+      </form>
+
+      <div class="custom-link">
+        <a href="/login">Already have an account?</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

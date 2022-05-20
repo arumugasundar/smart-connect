@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'smart-connect'`, () => {
+  it(`should have as title 'money-wiser-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('smart-connect');
+    expect(app.title).toEqual('money-wiser-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('smart-connect app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('money-wiser-frontend app is running!');
   });
 });

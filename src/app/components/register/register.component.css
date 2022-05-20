@@ -1,0 +1,24 @@
+.content{
+  border: solid 2px;
+  border-color:#49036f;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000000;
+  margin-top: 5em;
+  border-radius: 1em;
+  width: 70%;
+  padding: 1em;
+}
+
+.heading{
+  font-weight: bolder;
+  font-size: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.custom-link{
+  float: left;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+}

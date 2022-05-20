@@ -1,0 +1,9 @@
+.custom-chart:hover{
+  background-color:rgba(210, 210, 210, 0.5);
+  border-radius: 10px;
+}
+.custom-chart{
+  padding: 5px 5px 5px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

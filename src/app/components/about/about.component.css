@@ -1,0 +1,25 @@
+.content{
+  border: solid 2px;
+  border-color:#49036f;
+  background-color: rgba(0,0,0,0.5);
+  color: #FFFFFF;
+  margin-top: 5em;
+  /* margin: 0 auto; */
+  border-radius: 1em;
+  width: 70%;
+  padding: 1em;
+}
+
+.heading{
+  font-weight: bolder;
+  font-size: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.description{
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}

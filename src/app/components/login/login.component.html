@@ -1,0 +1,36 @@
+<div class="container-fluid container-xxl">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 d-flex justify-content-center p-2">
+      <div class="content text-center">
+        <div class="heading">Log In</div>
+        <form [formGroup]="loginFormGroup" (submit)="login()">
+
+            <mat-form-field class="w-75">
+              <mat-label>Email Id</mat-label>
+              <input matInput type="email" placeholder="abc@xyz.com" id="email" formControlName="email"/>
+            </mat-form-field>
+            <div>
+              <mat-error *ngIf="f && f['email'].dirty && f['email'].invalid">should be a valid one.</mat-error>
+            </div>
+
+            <mat-form-field class="w-75">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" id="password" formControlName="password"/>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <div>
+              <button type="submit" mat-button color="primary" mat-raised-button>Log In</button>
+            </div>
+      </form>
+
+      <div class="custom-link">
+        <a href="/register">New User?</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
