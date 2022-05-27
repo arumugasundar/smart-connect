@@ -8,12 +8,12 @@ Smart Connect is a news suggestion app that recommends news based on the user's 
 
 
 ## Front End : 
- **Link:** https://smart-connect-news-app.herokuapp.com/
- **Code:** https://github.com/arumugasundar/smart-connect
+ - **Link:** https://smart-connect-news-app.herokuapp.com/
+ - **Code:** https://github.com/arumugasundar/smart-connect
 
 ## Back End : 
- **Link:** https://smart-connect-backend-app.herokuapp.com/
- **Code:** https://github.com/arumugasundar/smart-connect-backend
+ - **Link:** https://smart-connect-backend-app.herokuapp.com/
+ - **Code:** https://github.com/arumugasundar/smart-connect-backend
 
 ## Scheduler App : 
- **Code:** https://github.com/ranganayakielango/smart-connect
+ - **Code:** https://github.com/ranganayakielango/smart-connect
