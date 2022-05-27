@@ -6,6 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 https://github.com/arumugasundar/smart-connect-backend
 
+## Middleware URL
+
+https://github.com/ranganayakielango/smart-connect
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
