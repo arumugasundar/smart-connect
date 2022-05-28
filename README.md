@@ -1,5 +1,5 @@
 # SmartConnect - Frontend
-Smart Connect is a news suggestion app that recommends news based on the user's current mood preferences from GDELT events dataset, helping them find relevant news based on their moods. We have used MongoDB for GDELT events data storage, React JS for front end, Node JS for the backend, and MuleSoft to load GDELT events data into MongoDB periodically.
+Smart Connect is a news suggestion app that recommends news based on the user's current mood preferences from GDELT events dataset, helping them find relevant news based on their moods. We have used MongoDB for GDELT events data storage, Angular for front end, Node JS for the backend, and MuleSoft to load GDELT events data into MongoDB periodically.
 
 ## Working:
 * Every user should create a UserID and Password
