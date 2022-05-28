@@ -1,9 +1,6 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button mat-button class="navbar-brand">
-        <img src="../../../assets/images/logo-transparent.png" height="40px" alt="logo"/>
-      </button>
+    <div class="w-100 navbar-header">
       <button
         mat-button
         class="navbar-brand"
@@ -16,19 +13,10 @@
         mat-button
         class="navbar-brand"
         routerLinkActive="active"
+        style="float:right"
         (click)="this.authService.logoutUser()">
         Log Out
       </button>
-
-      <!-- <button mat-button class="navbar-brand" href="/budget">Budget</button>
-      <button mat-button class="navbar-brand" href="/payment-reminder">Payment Reminders</button>
-      <button mat-button class="navbar-brand" (click)="this.authService.logoutUser()">Log Out</button> -->
     </div>
-    <!-- <ul class="nav navbar-nav">
-      <li class="active"><a href="/dashboard">Dashboard</a></li>
-      <li><a href="/budget">Budget</a></li>
-      <li><a href="/payment-reminder">Payment Reminders</a></li>
-      <li><a onclick="this.authService.logoutUser()">Log Out</a></li>
-    </ul> -->
   </div>
 </nav>

@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  // public backendUrl = "https://money-wiser-backend.herokuapp.com";
-  public backendUrl = "http://localhost:3000";
+  public backendUrl = "https://smart-connect-backend-app.herokuapp.com";
+  // public backendUrl = "http://localhost:3000";
 
   constructor(
     private http: HttpClient,

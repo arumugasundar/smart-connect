@@ -7,15 +7,23 @@ import { Router } from '@angular/router';
 })
 export class AppService {
 
-  // public backendUrl = "https://money-wiser-backend.herokuapp.com";
-  public backendUrl = "http://localhost:3000";
+  public backendUrl = "https://smart-connect-backend-app.herokuapp.com";
+  // public backendUrl = "http://localhost:3000";
 
   constructor(
     private http: HttpClient,
     private _router:Router
   ) { }
 
-  getTransactions(){
-    return this.http.get<[]>(this.backendUrl + '/api/budget/getTransactions');
+  getInitialEvents(newsType: any){
+    return this.http.get<[]>(this.backendUrl + '/api/dashboard/getInitialEvents/'+ newsType);
+  }
+
+  getPrevEvents(id: any, newsType: any){
+    return this.http.get<[]>(this.backendUrl + '/api/dashboard/getPrevEvents/'+ id +'/'+ newsType);
+  }
+
+  getNextEvents(id: any, newsType: any){
+    return this.http.get<[]>(this.backendUrl + '/api/dashboard/getNextEvents/'+ id +'/'+ newsType);
   }
 }

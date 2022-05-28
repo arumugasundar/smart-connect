@@ -27,6 +27,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
+import { AuthGuard } from './auth.guard';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -57,9 +62,13 @@ import { NgChartsModule } from 'ng2-charts';
     MatTableModule,
     MatPaginatorModule,
     CommonModule,
-    NgChartsModule
+    NgChartsModule,
+    InfiniteScrollModule,
+    NgxSpinnerModule,
+    MatOptionModule,
+    MatSelectModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../../services/app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'
-import { ChartOptions } from 'chart.js';
+import { MatOption } from '@angular/material/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,68 +12,109 @@ import { ChartOptions } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
 
-  public transactionData = [];
-  public income =  0.00;
-  public expenses = 0.00;
-  public balance = 0.00;
+  public events:any = [];
+  public newsType = 0;
 
-  public expensesBasedChartColors: Array<any> = [
-    {
-      backgroundColor:[
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
-      ],
-      borderColor: [
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
-      ],
-      borderWidth: 1
-  }];
-  public expensesBasedChartData = [];
-  public expensesBasedChartLabels = [];
-  public expensesBasedChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  public expensesBasedChartPlugins = [];
-  public expensesBasedChartLegend = true;
-  public expensesBasedChartType = 'pie';
+  public searchForm: FormGroup;
+  public newsTypeFilters = [{ key:1, value:'Positive'},{ key:2, value:'Critical'}];
+  @ViewChild('allNewsTypeSelected') private allNewsTypeSelected: MatOption | undefined;
 
   constructor(
     public appService: AppService,
     private _snackBar: MatSnackBar,
-    private _router : Router
-  ) { }
-
-  ngOnInit(): void {
-    this.getTransactions();
+    private _router : Router,
+    private newsTypeFormBuilder: FormBuilder
+  ) {
+    this.searchForm = this.newsTypeFormBuilder.group({
+      newsType: new FormControl('')
+    });
   }
 
-  getTransactions(){
-    this.appService.getTransactions().subscribe((response) => {
+  ngOnInit(): void {
+    this.getInitialEvents();
+  }
+
+  updateNews(){
+    let selectedKeys = this.searchForm.controls['newsType'].value;
+    console.log(selectedKeys);
+    if(selectedKeys.length > 0){
+      if(selectedKeys.includes(0)){
+        this.newsType = 0;
+      }else if(selectedKeys.includes(1)){
+        console.log('reached 1');
+        this.newsType = 1;
+      }else if(selectedKeys.includes(2)){
+        this.newsType = 2;
+      }
+      this.getInitialEvents();
+    }
+  }
+
+  togglePerNewsType(){
+    if (this.allNewsTypeSelected && this.allNewsTypeSelected.selected) {
+      this.allNewsTypeSelected.deselect();
+      return false;
+     }
+     if(this.searchForm.controls['newsType'].value.length==this.newsTypeFilters.length && this.allNewsTypeSelected)
+       this.allNewsTypeSelected.select();
+    return true;
+  }
+
+  toggleAllNewsTypes(){
+    if (this.allNewsTypeSelected && this.allNewsTypeSelected.selected) {
+      let newsTypes = this.newsTypeFilters.map(item => item.key);
+      newsTypes.push(0);
+      this.searchForm.controls['newsType']
+        .patchValue(newsTypes);
+    } else {
+      this.searchForm.controls['newsType'].patchValue([]);
+    }
+  }
+
+  getInitialEvents(){
+    this.appService.getInitialEvents(this.newsType).subscribe((response) => {
       if(response){
-        this.transactionData = response;
-        this.income = 0.00;
-        this.expenses = 0.00;
-        this.balance = 0.00;
-        for(let i = 0; i < this.transactionData.length; i++){
-          this.income += parseFloat(this.transactionData[i]['deposit']['$numberDecimal']);
-          this.expenses += parseFloat(this.transactionData[i]['withdraw']['$numberDecimal']);
-        }
-        this.balance = this.income - this.expenses;
+        console.log(response);
+        this.events = [...response];
       }
     }, (error) => {
       console.log(error);
     });
+  }
+
+  onScrollDown(){
+    console.log('ScrollDown event');
+    this.appService.getNextEvents(this.events[this.events.length-1]._id, this.newsType).subscribe((response) => {
+      if(response){
+        console.log(response.length, ' new records appended to the end.');
+        this.events = this.events.concat(response);
+        if(this.events.length > 40){
+          this.events = this.events.splice(20,this.events.length);
+        }
+      }
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  onScrollUp(){
+    console.log('ScrollUp event');
+    this.appService.getPrevEvents(this.events[0]._id, this.newsType).subscribe((response) => {
+      if(response){
+        console.log(response.length, ' new records appended to the begining.');
+        const newEvents = response;
+        this.events = newEvents.concat(this.events);
+        if(this.events.length > 40){
+          this.events = this.events.splice(0,20);
+        }
+      }
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  loadNextEvents(){
+
   }
 
 }
